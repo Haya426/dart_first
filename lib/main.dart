@@ -1,37 +1,20 @@
 
 
 import 'package:flutter/material.dart';
-class Person{
-  final String firstName;
-  final String lastName;
 
-  Person(this.firstName, this.lastName);
-}
-extension FullName on Person{
-  String get fullName => '$firstName $lastName';
-
-}
-class Cat{
-  final String name;
-  Cat(this.name);
-}
-extension Run on Cat{
-  void run(){
-    print('Cat $name is running');
-  }
-}
-void test(){
-  final foo = Person('foo', 'bar');
-  print(foo.fullName);
-
-final meow = Cat('Flutters');
-meow.run();
-}
 
 void main() {
   runApp(const MyApp());
 }
-
+Future<int> heavyFutureThatMultipleByTwo(int a){
+    return Future.delayed(const Duration(seconds: 3),(){
+      return a*2;
+    });
+  }
+void test() async{
+  final result = await heavyFutureThatMultipleByTwo(10);
+  print(result);
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   
