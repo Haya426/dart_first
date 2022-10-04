@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 
-void test(String? firstName,String? middleName,String? lastName){
-  String? name = firstName;
-  name ??=middleName;
-  name ??= lastName;
-  print(name);
+class Cat{
+  final String name;
+  Cat(this.name);
+  //here is factory constructor
+  factory Cat.fluffBall(){
+    return Cat('Fluff Ball');
+  }
+
+}
+
+void test(){
+  final flubffball = Cat.fluffBall();
+  print(flubffball.name);
 }
 
 void main() {
-  
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    test(null, 'foo', null);
+ test();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
