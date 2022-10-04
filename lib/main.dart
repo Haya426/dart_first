@@ -1,32 +1,31 @@
 
 
 import 'package:flutter/material.dart';
+class Person{
+  final String firstName;
+  final String lastName;
 
+  Person(this.firstName, this.lastName);
+}
+extension FullName on Person{
+  String get fullName => '$firstName $lastName';
+
+}
 class Cat{
   final String name;
   Cat(this.name);
-  //here is factory constructor
-  factory Cat.fluffBall(){
-    return Cat('Fluff Ball');
-  }
-
-  @override bool operator == (covariant Cat other) => other.name == name;
-  
-  @override
-    // TODO: implement hashCode
-  int get hashCode => name.hashCode;
-  
-
 }
-
-void test(){
-  final cat1 = Cat("Foo");
-  final cat2 = Cat("Foo");
-  if(cat1 == cat2){
-    print('they are equal');
+extension Run on Cat{
+  void run(){
+    print('Cat $name is running');
   }
-  else
-  print('they are not equal');
+}
+void test(){
+  final foo = Person('foo', 'bar');
+  print(foo.fullName);
+
+final meow = Cat('Flutters');
+meow.run();
 }
 
 void main() {
