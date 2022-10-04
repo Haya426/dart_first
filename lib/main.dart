@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 class Cat{
@@ -8,11 +10,23 @@ class Cat{
     return Cat('Fluff Ball');
   }
 
+  @override bool operator == (covariant Cat other) => other.name == name;
+  
+  @override
+    // TODO: implement hashCode
+  int get hashCode => name.hashCode;
+  
+
 }
 
 void test(){
-  final flubffball = Cat.fluffBall();
-  print(flubffball.name);
+  final cat1 = Cat("Foo");
+  final cat2 = Cat("Foo");
+  if(cat1 == cat2){
+    print('they are equal');
+  }
+  else
+  print('they are not equal');
 }
 
 void main() {
