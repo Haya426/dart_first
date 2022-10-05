@@ -7,15 +7,17 @@ void main() {
   runApp(const MyApp());
 }
 
-Stream<String> getName(){
-  return Stream.periodic(const Duration(seconds: 1),(value)=> 'foo');
+Iterable<int> getOneTwoThree() sync*{
+  yield 1;
+  yield 2;
+  yield 3;
 }
 
 void test() async{
-await for (final value in getName()){
-print(value);
+for( final value in getOneTwoThree()){
+  print(value);
+  if(value == 2)break;
 }
-print('Stream is finished!');
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
