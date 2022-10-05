@@ -7,17 +7,20 @@ void main() {
   runApp(const MyApp());
 }
 
-Iterable<int> getOneTwoThree() sync*{
-  yield 1;
-  yield 2;
-  yield 3;
+//Generics 
+// avoid re-writting similar code 
+
+class Pair<A,B> {
+  final A value1;
+  final B value2;
+
+  Pair(this.value1, this.value2);
 }
 
 void test() async{
-for( final value in getOneTwoThree()){
-  print(value);
-  if(value == 2)break;
-}
+final pair1 = Pair('haha', 30);
+print(pair1.value1);
+print(pair1.value2);
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
