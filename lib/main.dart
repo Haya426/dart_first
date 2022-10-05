@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
 }
-Future<int> heavyFutureThatMultipleByTwo(int a){
-    return Future.delayed(const Duration(seconds: 3),(){
-      return a*2;
-    });
-  }
+
+Stream<String> getName(){
+  return Stream.periodic(const Duration(seconds: 1),(value)=> 'foo');
+}
+
 void test() async{
-  final result = await heavyFutureThatMultipleByTwo(10);
-  print(result);
+await for (final value in getName()){
+print(value);
+}
+print('Stream is finished!');
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
