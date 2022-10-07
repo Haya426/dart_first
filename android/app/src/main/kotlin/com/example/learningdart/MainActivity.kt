@@ -1,4 +1,4 @@
-package com.example.learningdart
+package com.example.learningdart_setup
 
 import io.flutter.embedding.android.FlutterActivity
 
