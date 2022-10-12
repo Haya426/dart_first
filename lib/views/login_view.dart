@@ -1,37 +1,17 @@
-// Import the generated file
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:learningdart/views/login_view.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
-}
+class LoginView extends StatefulWidget {
+  const LoginView({super.key, required this.title});
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: const LoginView(title: 'Login')
-    );
-  }
-}
- class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+  final String title;
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
+class _LoginViewState extends State<LoginView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -52,7 +32,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text('Log In'),
       ),
       body: FutureBuilder(
         future: Firebase.initializeApp(),
@@ -82,14 +62,13 @@ class _RegisterViewState extends State<RegisterView> {
                 onPressed: () async {
                   final email = _email.text;
                   final password = _password.text;
-
                   final userCredential = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
+                      .signInWithEmailAndPassword(
                           email: email, password: password);
 
                   print(userCredential);
                 },
-                child: const Text('Register'),
+                child: const Text('Login'),
               ),
             ],
           );
@@ -101,5 +80,5 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
   }
-}
-
+  }
+  
