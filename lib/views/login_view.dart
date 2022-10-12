@@ -67,8 +67,14 @@ class _LoginViewState extends State<LoginView> {
                       .signInWithEmailAndPassword(
                           email: email, password: password);
                   } on FirebaseAuthException catch(e){
-                  if(e.code == 'user-not-found') print('You have not registered yet!');
+                  if(e.code == 'user-not-found'){
+                     print('You have not registered yet!');
                   }
+                  else if (e.code == 'wrong-password'){
+                    print('wrong password');
+                  }
+                  }
+                  
 
                 },
                 child: const Text('Login'),
