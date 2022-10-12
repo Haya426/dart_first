@@ -62,11 +62,14 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: () async {
                   final email = _email.text;
                   final password = _password.text;
-                  final userCredential = await FirebaseAuth.instance
+                  try{
+                      await FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                           email: email, password: password);
+                  } on FirebaseAuthException catch(e){
+                  if(e.code == 'user-not-found') print('You have not registered yet!');
+                  }
 
-                  print(userCredential);
                 },
                 child: const Text('Login'),
               ),
