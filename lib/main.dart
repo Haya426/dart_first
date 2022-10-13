@@ -1,4 +1,5 @@
 // Import the generated file
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:learningdart/firebase_options.dart';
@@ -32,7 +33,10 @@ class HomePage extends StatelessWidget {
           switch(snapshot.connectionState){
             
             case ConnectionState.done:
-              return const Text('Done');              
+              
+              print(FirebaseAuth.instance.currentUser);
+              return const Text('Done');
+
             default : return const Text('Loading.... ');
           }
         },
