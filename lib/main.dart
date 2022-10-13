@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const LoginView(title: 'Login')
+      home: const RegisterView()
     );
   }
 }
@@ -82,12 +82,16 @@ class _RegisterViewState extends State<RegisterView> {
                 onPressed: () async {
                   final email = _email.text;
                   final password = _password.text;
-
-                  final userCredential = await FirebaseAuth.instance
+                  try {
+                    await FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
                           email: email, password: password);
+                  } on FirebaseAuthException catch (e){
+                   if(e.code == 'weak-password'){
+                    print('weak password');
+                   }
 
-                  print(userCredential);
+                  }
                 },
                 child: const Text('Register'),
               ),
